@@ -255,29 +255,24 @@ const animationTimeline = () => {
         y: 30,
         zIndex: "-1",
     })
-    .from(".ten", 0.7, {
-        opacity: 0,
-        y: 10
-    })
-    .to(".ten",
-        0.7,
-        {
-            opacity: 0,
-            y: 10
-        },
-    "+=7")
-    .from(".eleven", 0.7, {
-        opacity: 0,
-        y: 10
-    })
-    .to(".eleven",
-        0.7,
-        {
-            opacity: 0,
-            y: 10
-        },
-    "+=7")
     .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
+    // Modified image animation
+    .fromTo(".art", 
+        0.7, 
+        {
+            visibility: "hidden",
+            opacity: 0,
+            scale: 0.8,
+            y: 20
+        },
+        {
+            visibility: "visible",
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            ease: Back.easeOut.config(1.7)
+        }
+    )
     .to(
         ".last-smile",
         0.5, {
@@ -286,9 +281,18 @@ const animationTimeline = () => {
         "+=1"
     );
 
-    // Restart Animation on click
-    const replyBtn = document.getElementById("replay");
-    replyBtn.addEventListener("click", () => {
-        tl.restart();
+// Update the replay functionality
+const replyBtn = document.getElementById("replay");
+replyBtn.addEventListener("click", () => {
+    // Reset the image state before restarting
+    gsap.set(".art", {
+        visibility: "hidden",
+        opacity: 0,
+        scale: 0.8,
+        y: 20
     });
+    
+    // Restart the timeline
+    tl.restart();
+});
 }

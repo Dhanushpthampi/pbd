@@ -107,11 +107,14 @@ body {
   max-width: 100%;
   /* height: auto; */
 }
-.art{
+
+.art { 
   display: inline-block;
   height: 350px;
   max-width: 100%;
-  /* height: auto; */
+  opacity: 0; /* Keep this to ensure initial hide */
+  transform: translateY(20px);
+  /* Remove visibility: hidden from here as it will be controlled by animation */
 }
 
 .six .hat {
